@@ -25,8 +25,14 @@ const launchFireworks = (centers, particlesPerBurst = 13) => {
       particle.textContent = symbols[(index + burst) % symbols.length];
       particle.style.setProperty('--x', `${x}px`);
       particle.style.setProperty('--y', `${y}px`);
-      particle.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
-      particle.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+      const dx = Math.cos(angle) * distance;
+      const dy = Math.sin(angle) * distance;
+      const fall = 62 + Math.round(Math.random() * 98);
+      particle.style.setProperty('--dx', `${dx}px`);
+      particle.style.setProperty('--dy', `${dy}px`);
+      particle.style.setProperty('--dx-drift', `${dx * 1.08}px`);
+      particle.style.setProperty('--fall-early', `${Math.round(fall * .35)}px`);
+      particle.style.setProperty('--dy-fall', `${dy + fall}px`);
       particle.style.setProperty('--spin', `${Math.round(Math.random() * 300 - 150)}deg`);
       particle.style.setProperty('--size', `${13 + Math.round(Math.random() * 12)}px`);
       particle.style.setProperty('--color', colors[(index + burst) % colors.length]);
@@ -41,11 +47,11 @@ const launchFireworks = (centers, particlesPerBurst = 13) => {
 const launchFullScreenFireworks = () => {
   const width = window.innerWidth;
   const height = window.innerHeight;
-  launchFireworks([
-    [width * .08, height * .16], [width * .26, height * .12], [width * .48, height * .15], [width * .70, height * .11], [width * .91, height * .18],
-    [width * .17, height * .43], [width * .39, height * .38], [width * .61, height * .44], [width * .83, height * .40],
-    [width * .08, height * .74], [width * .30, height * .71], [width * .51, height * .78], [width * .73, height * .69], [width * .93, height * .76],
-  ], 19);
+  const centers = Array.from({ length: 16 }, () => [
+    width * (.06 + Math.random() * .88),
+    height * (.08 + Math.random() * .76),
+  ]);
+  launchFireworks(centers, 20);
 };
 
 const runAfterFullScreenFireworks = (action) => {
