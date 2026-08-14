@@ -1,0 +1,140 @@
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.16 });
+sections.forEach((section) => observer.observe(section));
+
+const launchFireworks = (centers, particlesPerBurst = 13) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const layer = document.createElement('div');
+  layer.className = 'fireworks-layer';
+  layer.setAttribute('aria-hidden', 'true');
+  const symbols = ['✦', '✧', '✿', '♥', '●', '✦', '❀'];
+  const colors = ['#ff623f', '#d8ed67', '#ffcd62', '#f29aa0', '#8cc8dd', '#bd9cf3', '#ff8bb4'];
+  centers.forEach(([x, y], burst) => {
+    for (let index = 0; index < particlesPerBurst; index += 1) {
+      const angle = (Math.PI * 2 * index) / particlesPerBurst;
+      const distance = 42 + Math.random() * 72;
+      const particle = document.createElement('span');
+      particle.className = 'firework-particle';
+      particle.textContent = symbols[(index + burst) % symbols.length];
+      particle.style.setProperty('--x', `${x}px`);
+      particle.style.setProperty('--y', `${y}px`);
+      particle.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+      particle.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+      particle.style.setProperty('--spin', `${Math.round(Math.random() * 300 - 150)}deg`);
+      particle.style.setProperty('--size', `${13 + Math.round(Math.random() * 12)}px`);
+      particle.style.setProperty('--color', colors[(index + burst) % colors.length]);
+      particle.style.setProperty('--delay', `${burst * 70 + Math.random() * 180}ms`);
+      layer.appendChild(particle);
+    }
+  });
+  document.body.appendChild(layer);
+  window.setTimeout(() => layer.remove(), 1850);
+};
+
+const launchFullScreenFireworks = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  launchFireworks([
+    [width * .08, height * .16], [width * .26, height * .12], [width * .48, height * .15], [width * .70, height * .11], [width * .91, height * .18],
+    [width * .17, height * .43], [width * .39, height * .38], [width * .61, height * .44], [width * .83, height * .40],
+    [width * .08, height * .74], [width * .30, height * .71], [width * .51, height * .78], [width * .73, height * .69], [width * .93, height * .76],
+  ], 19);
+};
+
+const runAfterFullScreenFireworks = (action) => {
+  launchFullScreenFireworks();
+  window.setTimeout(action, 1550);
+};
+
+const contactCta = document.querySelector('.contact-cta');
+if (contactCta) {
+  contactCta.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    launchFullScreenFireworks();
+  });
+}
+
+document.querySelectorAll('.project').forEach((project) => {
+  project.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    runAfterFullScreenFireworks(() => { window.location.href = project.href; });
+  });
+});
+
+const portrait = document.querySelector('.portrait');
+if (portrait) {
+  portrait.addEventListener('click', (event) => {
+    event.stopPropagation();
+    launchFullScreenFireworks();
+  });
+  portrait.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      launchFullScreenFireworks();
+    }
+  });
+}
+
+const contactLink = document.querySelector('.text-link[href="#contact"]');
+if (contactLink) {
+  contactLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    runAfterFullScreenFireworks(() => document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' }));
+  });
+}
+
+document.addEventListener('click', (event) => launchFireworks([[event.clientX, event.clientY]]));
+
+const finePointer = window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)');
+if (finePointer.matches) {
+  const glow = document.querySelector('.cursor-glow');
+  const heroRing = document.querySelector('.hero');
+  const magnetic = document.querySelectorAll('.round-link, .availability');
+  const cards = document.querySelectorAll('.project');
+
+  window.addEventListener('pointermove', (event) => {
+    glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate3d(-50%, -50%, 0)`;
+    glow.classList.add('is-active');
+    const x = (event.clientX / window.innerWidth - 0.5) * 14;
+    const y = (event.clientY / window.innerHeight - 0.5) * 14;
+    heroRing.style.setProperty('--mouse-x', `${x}px`);
+    heroRing.style.setProperty('--mouse-y', `${y}px`);
+    heroRing.style.setProperty('perspective', '900px');
+  });
+
+  document.addEventListener('pointerleave', () => glow.classList.remove('is-active'));
+  document.querySelectorAll('a, .portrait').forEach((item) => {
+    item.addEventListener('pointerenter', () => glow.classList.add('is-hovering'));
+    item.addEventListener('pointerleave', () => glow.classList.remove('is-hovering'));
+  });
+
+  magnetic.forEach((item) => {
+    item.addEventListener('pointermove', (event) => {
+      const box = item.getBoundingClientRect();
+      const x = (event.clientX - (box.left + box.width / 2)) * 0.16;
+      const y = (event.clientY - (box.top + box.height / 2)) * 0.16;
+      item.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    item.addEventListener('pointerleave', () => { item.style.transform = ''; });
+  });
+
+  cards.forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const box = card.getBoundingClientRect();
+      const x = (event.clientX - box.left) / box.width - 0.5;
+      const y = (event.clientY - box.top) / box.height - 0.5;
+      card.style.transform = `perspective(900px) rotateX(${-y * 3.2}deg) rotateY(${x * 3.2}deg) translateY(-8px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+}
