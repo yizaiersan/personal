@@ -1,0 +1,9 @@
+.project-modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px}
+.project-modal[hidden]{display:none}
+.project-modal__backdrop{position:absolute;inset:0;background:rgba(23,36,44,.48);backdrop-filter:blur(5px)}
+.project-modal__card{position:relative;width:min(440px,100%);padding:48px 42px 38px;background:var(--paper);border:2px solid var(--ink);box-shadow:12px 12px 0 var(--orange);text-align:center;animation:modal-pop .35s cubic-bezier(.2,.85,.35,1.2)}
+.project-modal__sparkle{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 18px;border-radius:50%;background:var(--lime);font-size:25px;color:var(--orange)}
+.project-modal h2{font-size:31px;letter-spacing:-.06em;margin:12px 0 14px}.project-modal p:not(.eyebrow){font-size:15px;line-height:1.8;margin:0 auto 28px;max-width:300px}
+.project-modal button{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:12px 20px;font:600 14px "Noto Sans SC",sans-serif;cursor:pointer;transition:transform .2s ease,background .2s ease}.project-modal button:hover{background:var(--orange);transform:translateY(-3px)}
+@keyframes modal-pop{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){.project-modal__card{padding:40px 26px 30px;box-shadow:8px 8px 0 var(--orange)}.project-modal h2{font-size:27px}}

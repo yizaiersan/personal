@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="interaction.css" />
     <link rel="stylesheet" href="housing.css" />
     <link rel="stylesheet" href="fireworks.css" />
+    <link rel="stylesheet" href="modal.css" />
   </head>
   <body>
     <div class="noise"></div>
@@ -77,7 +78,7 @@
             <div class="project-visual"><div class="sun"></div><span>AGENT</span></div>
             <div class="project-meta"><div><h3>智能 OnCall Agent 系统</h3><p>Spring AI · RAG · MCP · 多智能体</p></div><b>01 ↗</b></div>
           </a>
-          <a class="project project-book" href="#contact" aria-label="查看先特软件低代码平台项目">
+          <a class="project project-book project-internal" href="#contact" aria-label="查看先特软件低代码平台项目说明">
             <div class="project-visual"><div class="book-title">低代码<br /><small>LOW CODE PLATFORM</small></div><div class="book-line"></div></div>
             <div class="project-meta"><div><h3>先特软件低代码平台</h3><p>SpringCloud · Kafka · Elasticsearch</p></div><b>02 ↗</b></div>
           </a>
@@ -102,6 +103,16 @@
         <div class="contact-foot"><p>© 2026 Chen Kechao. All rights reserved.</p><div><a href="tel:17302295191">173 0229 5191</a><a href="mailto:1071746832@qq.com">1071746832@qq.com</a><a href="https://github.com/yizaiersan" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#top">回到顶部</a></div></div>
       </section>
     </main>
+    <div class="project-modal" id="internal-project-modal" role="dialog" aria-modal="true" aria-labelledby="internal-project-title" hidden>
+      <div class="project-modal__backdrop" data-close-modal></div>
+      <div class="project-modal__card">
+        <span class="project-modal__sparkle">✦</span>
+        <p class="eyebrow">A LITTLE NOTE</p>
+        <h2 id="internal-project-title">这是一个内网项目呀</h2>
+        <p>先特软件低代码平台为内网开发项目，暂时没有可公开访问的链接。</p>
+        <button type="button" data-close-modal>知道啦 ✿</button>
+      </div>
+    </div>
     <script src="motion.js"></script>
   </body>
 </html>
