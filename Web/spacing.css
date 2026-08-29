@@ -1,0 +1,6 @@
+/* Tighter vertical rhythm: section labels arrive closer to their boundaries. */
+.hero{padding-top:42px;min-height:540px}
+.section{padding-top:78px;padding-bottom:108px}
+.work.section{padding-top:82px}
+.contact{padding-top:78px}
+@media(max-width:700px){.hero{padding-top:34px;min-height:500px}.section{padding-top:62px;padding-bottom:76px}.work.section{padding-top:66px}.contact{padding-top:66px}}

@@ -1,0 +1,7 @@
+.contact{padding-top:112px;padding-bottom:72px}
+.contact h2{max-width:1100px;letter-spacing:-.07em}
+.contact h2 a{display:inline-flex;align-items:center;gap:.16em;color:var(--paper);background:var(--ink);padding:.07em .19em .11em .16em;line-height:.86;box-shadow:8px 8px 0 var(--orange);transition:transform .35s ease,box-shadow .35s ease,background .35s ease}
+.contact h2 a:hover{background:var(--orange);box-shadow:12px 12px 0 var(--ink);transform:translate(-4px,-4px)}
+.contact h2 span{margin-left:.08em}
+.contact-foot{margin-top:74px}
+@media(max-width:700px){.contact{padding-top:80px;padding-bottom:52px}.contact h2 a{box-shadow:5px 5px 0 var(--orange)}.contact-foot{margin-top:56px}}
