@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="housing.css" />
     <link rel="stylesheet" href="fireworks.css" />
     <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="experience.css" />
   </head>
   <body>
     <div class="noise"></div>
@@ -26,6 +27,7 @@
       <a class="brand" href="#top">CKC<span>·</span></a>
       <nav aria-label="主导航">
         <a href="#about">关于</a>
+        <a href="#experience">经历</a>
         <a href="#work">项目</a>
         <a href="#contact">联系</a>
       </nav>
@@ -51,7 +53,7 @@
         <p class="eyebrow">02 / ABOUT ME</p>
         <div class="about-grid">
           <div>
-            <h2>用可靠的后端能力，<br />把复杂系统做得<em>稳定、高效。</em></h2>
+            <h2>以工程化能力驱动，<br />让复杂系统<em>稳定、可扩展。</em></h2>
             <div class="about-signal" aria-label="项目数据">
               <div class="signal-track"></div>
               <div class="stat-row">
@@ -62,15 +64,57 @@
             </div>
           </div>
           <div class="about-copy">
-            <p>24 岁，男。天津职业技术师范大学软件工程本科，2026 届毕业生。扎实掌握 Java、SpringBoot、MySQL、Redis、消息队列与分布式系统开发。</p>
-            <p>曾参与低代码平台、AI OnCall Agent、天津智慧住房建设综合服务平台与校园顺风车项目，关注从需求抽象到服务落地的完整链路。</p>
+            <p>天津职业技术师范大学软件工程本科，具备 Java 与 AI 应用全栈开发能力。熟悉 SpringCloud、SpringBoot、MySQL、Redis、消息队列及分布式系统设计，注重高并发场景下的稳定性、数据一致性与可观测性。</p>
+            <p>拥有政务数字化、企业级低代码平台与智能运维项目经验：参与天津智慧住房建设综合服务平台建设；在低代码平台中完成百万级数据同步与检索链路优化，将同步耗时从 2 小时缩短至 20 分钟、查询响应从 5 秒降至 500ms；同时具备 RAG、AI Agent 与 MCP 工具编排实践，关注以可量化结果推动业务落地。</p>
             <a class="text-link" href="#contact">查看联系方式 <span>↗</span></a>
           </div>
         </div>
       </section>
 
+      <section id="experience" class="experience section">
+        <div class="wrap">
+          <p class="eyebrow">03 / EXPERIENCE</p>
+          <div class="experience-heading"><h2>实习与工作经历</h2><p>从业务交付到性能优化，持续沉淀可复用的工程能力。</p></div>
+          <div class="experience-list">
+            <article class="experience-card experience-card--featured">
+              <div class="experience-card__top"><span>01 / WORK</span><time>2026.06 — 2026.08</time></div>
+              <h3>天津测绘院</h3>
+              <p class="experience-role">Java + AI 开发</p>
+              <p>参与天津智慧住房建设综合服务平台建设，面向住建领域全生命周期业务协同与数据治理。</p>
+              <ul>
+                <li>实现“新房购置一件事”敏感信息的 SM2 国密加密推送，并完成合同 PDF、身份证明图片的水印与压缩优化。</li>
+                <li>建设企业营收填报与统计局数据核对逻辑，覆盖批量导入、版本筛选、增速校验及异常数据回退。</li>
+              </ul>
+              <p class="experience-stack">SpringCloud · SpringBoot · 人大金仓 · Redis · Kafka · MongoDB</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card__top"><span>02 / INTERNSHIP</span><time>2025.10 — 2026.04</time></div>
+              <h3>天津开发区先特网络系统有限公司</h3>
+              <p class="experience-role">Java + AI 实习生</p>
+              <p>参与万象表单企业级低代码平台研发，聚焦搜索、工作流与高并发数据处理能力。</p>
+              <ul>
+                <li>完成 MySQL 至 Elasticsearch 百万级数据同步与检索优化：同步耗时由 2 小时降至 20 分钟，查询由 5 秒降至 500ms。</li>
+                <li>开发异步工作流表单更新与职工照片批量更新能力，处理时间由 2 天降至 2 分钟，错误率由 5% 降至 0.1%。</li>
+              </ul>
+              <p class="experience-stack">SpringCloud · Redis · Kafka · Elasticsearch · MinIO</p>
+            </article>
+            <article class="experience-card">
+              <div class="experience-card__top"><span>03 / INTERNSHIP</span><time>2025.06 — 2025.09</time></div>
+              <h3>江苏传智播客教育科技股份有限公司</h3>
+              <p class="experience-role">Java + AI 实习生</p>
+              <p>参与疯狂红包雨活动系统研发，为线下商家引流场景提供稳定的抽奖与活动配置能力。</p>
+              <ul>
+                <li>通过 Redis + Lua 脚本保证活动校验与令牌领取的原子性，并使用令牌桶算法控制奖品超发。</li>
+                <li>完成抽奖接口压测，单点 QPS 达 4024。</li>
+              </ul>
+              <p class="experience-stack">SpringBoot · Redis · RabbitMQ · MySQL · Docker</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="work" class="work section">
-        <div class="wrap"><p class="eyebrow">03 / SELECTED PROJECTS</p>
+        <div class="wrap"><p class="eyebrow">04 / SELECTED PROJECTS</p>
           <div class="work-heading"><h2>代表项目经验</h2><span>2025 — 2026</span></div>
         </div>
         <div class="projects wrap">
@@ -98,7 +142,7 @@
       </section>
 
       <section id="contact" class="contact wrap section">
-        <p class="eyebrow">04 / CONTACT</p>
+        <p class="eyebrow">05 / CONTACT</p>
         <h2>期待新的机会，<br /><a class="contact-cta" href="mailto:1071746832@qq.com">与我联系。<span>↗</span></a></h2>
         <div class="contact-foot"><p>© 2026 Chen Kechao. All rights reserved.</p><div><a href="tel:17302295191">173 0229 5191</a><a href="mailto:1071746832@qq.com">1071746832@qq.com</a><a href="https://github.com/yizaiersan" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#top">回到顶部</a></div></div>
       </section>
@@ -111,6 +155,14 @@
         <h2 id="internal-project-title">这是一个内网项目呀</h2>
         <p>先特软件低代码平台为内网开发项目，暂时没有可公开访问的链接。</p>
         <button type="button" data-close-modal>知道啦 ✿</button>
+      </div>
+    </div>
+    <div class="contact-modal" id="contact-qr-modal" role="dialog" aria-modal="true" aria-label="微信二维码" hidden>
+      <div class="contact-modal__backdrop" data-close-qr-modal></div>
+      <div class="contact-modal__card">
+        <button class="contact-modal__close" type="button" aria-label="关闭二维码" data-close-qr-modal>×</button>
+        <img src="wechat-qr.png" alt="Chao 的微信二维码，扫码添加好友" />
+        <p>扫一扫，来和我聊聊吧 ✦</p>
       </div>
     </div>
     <script src="motion.js"></script>

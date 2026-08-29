@@ -60,13 +60,32 @@ const runAfterFullScreenFireworks = (action) => {
 };
 
 const contactCta = document.querySelector('.contact-cta');
+const contactQrModal = document.querySelector('#contact-qr-modal');
+const openContactQrModal = () => { if (contactQrModal) contactQrModal.hidden = false; };
 if (contactCta) {
   contactCta.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    launchFullScreenFireworks();
+    runAfterFullScreenFireworks(openContactQrModal);
   });
 }
+
+if (contactQrModal) {
+  contactQrModal.querySelectorAll('[data-close-qr-modal]').forEach((element) => {
+    element.addEventListener('click', () => { contactQrModal.hidden = true; });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') contactQrModal.hidden = true;
+  });
+}
+
+document.querySelectorAll('.contact-foot a[href^="tel:"], .contact-foot a[href^="mailto:"]').forEach((contactItem) => {
+  contactItem.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    runAfterFullScreenFireworks(openContactQrModal);
+  });
+});
 
 document.querySelectorAll('.project').forEach((project) => {
   project.addEventListener('click', (event) => {
