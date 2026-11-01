@@ -89,27 +89,32 @@ document.querySelectorAll('.contact-foot a[href^="tel:"], .contact-foot a[href^=
 
 document.querySelectorAll('.project').forEach((project) => {
   project.addEventListener('click', (event) => {
-    if (project.classList.contains('project-internal')) return;
+    if (project.classList.contains('project-modal-trigger')) return;
     event.preventDefault();
     event.stopPropagation();
     runAfterFullScreenFireworks(() => { window.location.href = project.href; });
   });
 });
 
-const internalProject = document.querySelector('.project-internal');
-const internalProjectModal = document.querySelector('#internal-project-modal');
-if (internalProject && internalProjectModal) {
-  const closeInternalProjectModal = () => { internalProjectModal.hidden = true; };
-  internalProject.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    internalProjectModal.hidden = false;
+const projectModal = document.querySelector('#internal-project-modal');
+if (projectModal) {
+  const closeProjectModal = () => { projectModal.hidden = true; };
+  const projectModalTitle = projectModal.querySelector('#internal-project-title');
+  const projectModalMessage = projectModal.querySelector('#project-modal-message');
+  document.querySelectorAll('.project-modal-trigger').forEach((project) => {
+    project.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      projectModalTitle.textContent = project.dataset.modalTitle;
+      projectModalMessage.textContent = project.dataset.modalMessage;
+      projectModal.hidden = false;
+    });
   });
-  internalProjectModal.querySelectorAll('[data-close-modal]').forEach((element) => {
-    element.addEventListener('click', closeInternalProjectModal);
+  projectModal.querySelectorAll('[data-close-modal]').forEach((element) => {
+    element.addEventListener('click', closeProjectModal);
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeInternalProjectModal();
+    if (event.key === 'Escape') closeProjectModal();
   });
 }
 
